@@ -7,10 +7,10 @@ var pump = require('pump')
 
 var noop = function() {}
 
-module.exports = function(db) {
+module.exports = function(db, options) {
   var feed = {}
   var lock = mutexify()
-  var valueEncoding = db.options.valueEncoding || 'binary'
+  var valueEncoding = options.valueEncoding || db.options.valueEncoding || 'binary'
 
   var ensureCount = function(cb) {
     if (feed.change) return cb()
